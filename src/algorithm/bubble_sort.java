@@ -1,6 +1,6 @@
 package algorithm;
 
-//¹öºíÁ¤·Ä
+//ë²„ë¸”ì •ë ¬
 public class bubble_sort {
 
 	public static void main(String[] args) {
