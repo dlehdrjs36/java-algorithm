@@ -1,17 +1,15 @@
 package datastructure;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
 
 //순차 리스트
 public class SimpleArrayList<T> {
 
 	private static final int DEFAULT_ARRAY_SIZE = 8; 
 	private T[] plist;
+	private T data;
 	private int numOfData; //리스트에 저장된 데이터의 수
 	private int curPosition; //마지막 참조 위치에 대한 정보 저장
-	private T data;
 	
 	/**
 	 * 제네릭 배열을 일반적으로 사용 시, 오류가 발생하는 이유는 
@@ -26,10 +24,6 @@ public class SimpleArrayList<T> {
 		this.numOfData = 0;
 		this.curPosition = -1; // -1은 아무런 위치도 참조하지 않았음을 의미. 0이라면 0번째 위치를 참조
 	}
-	//생성자
-//	public void ListIntt(List<T> plist) {
-//		
-//	}
 	
 	//리스트에 데이터 저장
 	public void LInsert(T data) {
@@ -41,43 +35,42 @@ public class SimpleArrayList<T> {
 		numOfData++; //저장된 데이터의 수 증가
 	}
 	
-	//저장된 데이터의 탐색 및 탐색 초기화
-	public boolean LFirst(SimpleArrayList<T> list) {
+	//저장된 첫 번째 데이터 탐색 및 탐색 초기화 용도
+	public boolean LFirst() {
 		if(numOfData == 0) {
 			return false; 
 		}
-		list.curPosition = 0;
-		this.data = (T) list.plist[0];
+		curPosition = 0;
+		this.data = (T) plist[0];
 		return true;
 	}
 	
-	//다음 데이터의 참조(반환)을 목적으로 호출
-	public boolean LNext(SimpleArrayList<T> list) {
+	//두 번째 이후 데이터 참조
+	public boolean LNext() {
 		if(curPosition >= numOfData-1) { //더 이상 참조할 데이터가 없다면
 			return false; 
 		}
-		list.curPosition++;		
-		this.data = list.plist[curPosition];
+		curPosition++;		
+		this.data = plist[curPosition];
 		return true;
 	}
 	
-	//참조 데이터 삭제
-	public T LRemove(SimpleArrayList<T> list) {
-		int rpos = list.curPosition;
-		int num = list.numOfData;
+	//참조한 데이터 삭제
+	public T LRemove() {
+		int rpos = curPosition;
+		int num = numOfData;
 		int i;
-		T rdata = list.plist[rpos]; //삭제할 데이터를 임시로 저장
-		
+		T rdata = plist[rpos]; //삭제할 데이터를 임시로 저장
 		//삭제를 위한 데이터의 이동을 진행하는 반복문
-		for (i = 0; i < num-1; i++) {
-			list.plist[i] = list.plist[i+1]; 
+		for (i = rpos; i < num-1; i++) {
+			plist[i] = plist[i+1]; 
 		}
-		list.numOfData--; //데이터의 수 감소
-		list.curPosition--; //참조위치를 하나 되돌린다.
+		numOfData--; //데이터의 수 감소
+		curPosition--; //참조위치를 하나 되돌린다.
 		return rdata;
 	}
 	
-	//현재 저장되어 있는 데이터의 수를 반환
+	//저장되어 있는 데이터의 수를 반환
 	public int LCount() {
 		return numOfData;
 	}
@@ -95,31 +88,32 @@ public class SimpleArrayList<T> {
 		
 		//저장된 데이터의 전체 출력
 		System.out.println("현재 데이터의 수: " + simpleArrayList.LCount());
-		if(simpleArrayList.LFirst(simpleArrayList)) { //첫 번째 데이터 조회
-			System.out.println(simpleArrayList.data);
+		if(simpleArrayList.LFirst()) { //첫 번째 데이터 조회
+			System.out.print(simpleArrayList.data);
 			
-			while(simpleArrayList.LNext(simpleArrayList)) { //두 번째 이후의 데이터 조회
-				System.out.println(simpleArrayList.data);
+			while(simpleArrayList.LNext()) { //두 번째 이후의 데이터 조회
+				System.out.print(" "+simpleArrayList.data);
 			}
 		}
 		System.out.println();
+		System.out.println();
 		//숫자 22를 탐색하여 모두 삭제
-		if(simpleArrayList.LFirst(simpleArrayList)) { //첫 번째 데이터 조회
+		if(simpleArrayList.LFirst()) { //첫 번째 데이터 조회
 			if(simpleArrayList.data == 22)
-				simpleArrayList.LRemove(simpleArrayList);
+				simpleArrayList.LRemove();
 			
-			while(simpleArrayList.LNext(simpleArrayList)) { //두 번째 이후의 데이터 조회
+			while(simpleArrayList.LNext()) { //두 번째 이후의 데이터 조회
 				if(simpleArrayList.data == 22)
-					simpleArrayList.LRemove(simpleArrayList);
+					simpleArrayList.LRemove();
 			}
 		}
 		//삭제 후 저장된 데이터 전체 출력
 		System.out.println("현재 데이터의 수: " + simpleArrayList.LCount());
-		if(simpleArrayList.LFirst(simpleArrayList)) { //첫 번째 데이터 조회
-			System.out.println(simpleArrayList.data);
+		if(simpleArrayList.LFirst()) { //첫 번째 데이터 조회
+			System.out.print(simpleArrayList.data);
 			
-			while(simpleArrayList.LNext(simpleArrayList)) { //두 번째 이후의 데이터 조회
-				System.out.println(simpleArrayList.data);
+			while(simpleArrayList.LNext()) { //두 번째 이후의 데이터 조회
+				System.out.print(" "+simpleArrayList.data);
 			}
 		}
 	}
