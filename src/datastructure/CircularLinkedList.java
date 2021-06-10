@@ -103,7 +103,6 @@ public class CircularLinkedList<T> {
 	
 	/**
 	 * 참조한 데이터 삭제
-	 * 두 번 이상 호출 되면 안됨. 한 번 호출 후 LNext() 또는 LFirst() 호출 후 사용가능
 	 * 원형 연결리스트에는 더미 노드가 없기 떄문에 삭제의 과정이 상황에 따라서 달라진다. 
 	 * @return
 	 */
