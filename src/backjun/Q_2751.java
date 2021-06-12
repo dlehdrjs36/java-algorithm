@@ -5,19 +5,19 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /*
- * ¹®Á¦
- * N°³ÀÇ ¼ö°¡ ÁÖ¾îÁ³À» ¶§, ÀÌ¸¦ ¿À¸§Â÷¼øÀ¸·Î Á¤·ÄÇÏ´Â ÇÁ·Î±×·¥À» ÀÛ¼ºÇÏ½Ã¿À.
+ * ë¬¸ì œ
+ * Nê°œì˜ ìˆ˜ê°€ ì£¼ì–´ì¡Œì„ ë•Œ, ì´ë¥¼ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬í•˜ëŠ” í”„ë¡œê·¸ëž¨ì„ ìž‘ì„±í•˜ì‹œì˜¤.
  * 
- * ÀÔ·Â
- * Ã¹Â° ÁÙ¿¡ ¼öÀÇ °³¼ö N(1 ¡Â N ¡Â 1,000,000)ÀÌ ÁÖ¾îÁø´Ù. 
- * µÑÂ° ÁÙºÎÅÍ N°³ÀÇ ÁÙ¿¡´Â ¼ýÀÚ°¡ ÁÖ¾îÁø´Ù. 
- * ÀÌ ¼ö´Â Àý´ñ°ªÀÌ 1,000,000º¸´Ù ÀÛ°Å³ª °°Àº Á¤¼öÀÌ´Ù. 
- * ¼ö´Â Áßº¹µÇÁö ¾Ê´Â´Ù.
+ * ìž…ë ¥
+ * ì²«ì§¸ ì¤„ì— ìˆ˜ì˜ ê°œìˆ˜ N(1 â‰¤ N â‰¤ 1,000,000)ì´ ì£¼ì–´ì§„ë‹¤. 
+ * ë‘˜ì§¸ ì¤„ë¶€í„° Nê°œì˜ ì¤„ì—ëŠ” ìˆ«ìžê°€ ì£¼ì–´ì§„ë‹¤. 
+ * ì´ ìˆ˜ëŠ” ì ˆëŒ“ê°’ì´ 1,000,000ë³´ë‹¤ ìž‘ê±°ë‚˜ ê°™ì€ ì •ìˆ˜ì´ë‹¤. 
+ * ìˆ˜ëŠ” ì¤‘ë³µë˜ì§€ ì•ŠëŠ”ë‹¤.
  * 
- * Ãâ·Â
- * Ã¹Â° ÁÙºÎÅÍ N°³ÀÇ ÁÙ¿¡ ¿À¸§Â÷¼øÀ¸·Î Á¤·ÄÇÑ °á°ú¸¦ ÇÑ ÁÙ¿¡ ÇÏ³ª¾¿ Ãâ·ÂÇÑ´Ù.
+ * ì¶œë ¥
+ * ì²«ì§¸ ì¤„ë¶€í„° Nê°œì˜ ì¤„ì— ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬í•œ ê²°ê³¼ë¥¼ í•œ ì¤„ì— í•˜ë‚˜ì”© ì¶œë ¥í•œë‹¤.
  *
- * ¿¹Á¦ ÀÔ·Â 1
+ * ì˜ˆì œ ìž…ë ¥ 1
  * 5
  * 5
  * 4
@@ -25,7 +25,7 @@ import java.io.InputStreamReader;
  * 2
  * 1
  * 
- * ¿¹Á¦ Ãâ·Â 1 
+ * ì˜ˆì œ ì¶œë ¥ 1 
  * 1
  * 2
  * 3
@@ -36,7 +36,7 @@ import java.io.InputStreamReader;
 */
 public class Q_2751 {
 	static int[] sortArray;
-	//¹è¿­ ÂÉ°³±â
+	//ë°°ì—´ ìª¼ê°œê¸°
 	public static void mergeSort(int[] array, int start, int end) {
 		if(start < end) {
 			int middle = (start+end)/2;
@@ -45,7 +45,7 @@ public class Q_2751 {
 			merge(array, start, middle, end);
 		}
 	}
-	//¹è¿­ ÇÕÄ¡±â
+	//ë°°ì—´ í•©ì¹˜ê¸°
 	public static void merge(int[] array, int start, int middle, int end) {
 		int i = start;
 		int j = middle+1;
@@ -59,7 +59,7 @@ public class Q_2751 {
 			}
 			k++;
 		}
-		//Á¤·Ä ÈÄ, ³²Àº µ¥ÀÌÅÍ Ãß°¡
+		//ì •ë ¬ í›„, ë‚¨ì€ ë°ì´í„° ì¶”ê°€
 		if(i > middle) {
 			for(int l=j; l <= end; l++) {
 				sortArray[k] = array[l];
@@ -71,7 +71,7 @@ public class Q_2751 {
 				k++;
 			}
 		}
-		//Á¤·ÄµÈ ¹è¿­ »ðÀÔ
+		//ì •ë ¬ëœ ë°°ì—´ ì‚½ìž…
 		for(int n=start; n<=end; n++ ) {
 			array[n] = sortArray[n];
 		}

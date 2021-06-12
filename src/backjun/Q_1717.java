@@ -5,24 +5,24 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /*
- * ¹®Á¦
- * ÃÊ±â¿¡ {0}, {1}, {2}, ... {n} ÀÌ °¢°¢ n+1°³ÀÇ ÁýÇÕÀ» ÀÌ·ç°í ÀÖ´Ù. 
- * ¿©±â¿¡ ÇÕÁýÇÕ ¿¬»ê°ú, µÎ ¿ø¼Ò°¡ °°Àº ÁýÇÕ¿¡ Æ÷ÇÔµÇ¾î ÀÖ´ÂÁö¸¦ È®ÀÎÇÏ´Â ¿¬»êÀ» ¼öÇàÇÏ·Á°í ÇÑ´Ù.
- * ÁýÇÕÀ» Ç¥ÇöÇÏ´Â ÇÁ·Î±×·¥À» ÀÛ¼ºÇÏ½Ã¿À.
+ * ë¬¸ì œ
+ * ì´ˆê¸°ì— {0}, {1}, {2}, ... {n} ì´ ê°ê° n+1ê°œì˜ ì§‘í•©ì„ ì´ë£¨ê³  ìžˆë‹¤. 
+ * ì—¬ê¸°ì— í•©ì§‘í•© ì—°ì‚°ê³¼, ë‘ ì›ì†Œê°€ ê°™ì€ ì§‘í•©ì— í¬í•¨ë˜ì–´ ìžˆëŠ”ì§€ë¥¼ í™•ì¸í•˜ëŠ” ì—°ì‚°ì„ ìˆ˜í–‰í•˜ë ¤ê³  í•œë‹¤.
+ * ì§‘í•©ì„ í‘œí˜„í•˜ëŠ” í”„ë¡œê·¸ëž¨ì„ ìž‘ì„±í•˜ì‹œì˜¤.
  * 
- * ÀÔ·Â
- * Ã¹Â° ÁÙ¿¡ n(1 ¡Â n ¡Â 1,000,000), m(1 ¡Â m ¡Â 100,000)ÀÌ ÁÖ¾îÁø´Ù. 
- * nÀº ÀÔ·ÂÀ¸·Î ÁÖ¾îÁö´Â ¿¬»êÀÇ °³¼öÀÌ´Ù. ´ÙÀ½ m°³ÀÇ ÁÙ¿¡´Â °¢°¢ÀÇ ¿¬»êÀÌ ÁÖ¾îÁø´Ù. 
- * ÇÕÁýÇÕÀº 0 a bÀÇ ÇüÅÂ·Î ÀÔ·ÂÀÌ ÁÖ¾îÁø´Ù. 
- * ÀÌ´Â a°¡ Æ÷ÇÔµÇ¾î ÀÖ´Â ÁýÇÕ°ú, b°¡ Æ÷ÇÔµÇ¾î ÀÖ´Â ÁýÇÕÀ» ÇÕÄ£´Ù´Â ÀÇ¹ÌÀÌ´Ù. 
- * µÎ ¿ø¼Ò°¡ °°Àº ÁýÇÕ¿¡ Æ÷ÇÔµÇ¾î ÀÖ´ÂÁö¸¦ È®ÀÎÇÏ´Â ¿¬»êÀº 1 a bÀÇ ÇüÅÂ·Î ÀÔ·ÂÀÌ ÁÖ¾îÁø´Ù. 
- * ÀÌ´Â a¿Í b°¡ °°Àº ÁýÇÕ¿¡ Æ÷ÇÔµÇ¾î ÀÖ´ÂÁö¸¦ È®ÀÎÇÏ´Â ¿¬»êÀÌ´Ù. 
- * a¿Í b´Â n ÀÌÇÏÀÇ ÀÚ¿¬¼ö ¶Ç´Â 0ÀÌ¸ç °°À» ¼öµµ ÀÖ´Ù.
+ * ìž…ë ¥
+ * ì²«ì§¸ ì¤„ì— n(1 â‰¤ n â‰¤ 1,000,000), m(1 â‰¤ m â‰¤ 100,000)ì´ ì£¼ì–´ì§„ë‹¤. 
+ * nì€ ìž…ë ¥ìœ¼ë¡œ ì£¼ì–´ì§€ëŠ” ì—°ì‚°ì˜ ê°œìˆ˜ì´ë‹¤. ë‹¤ìŒ mê°œì˜ ì¤„ì—ëŠ” ê°ê°ì˜ ì—°ì‚°ì´ ì£¼ì–´ì§„ë‹¤. 
+ * í•©ì§‘í•©ì€ 0 a bì˜ í˜•íƒœë¡œ ìž…ë ¥ì´ ì£¼ì–´ì§„ë‹¤. 
+ * ì´ëŠ” aê°€ í¬í•¨ë˜ì–´ ìžˆëŠ” ì§‘í•©ê³¼, bê°€ í¬í•¨ë˜ì–´ ìžˆëŠ” ì§‘í•©ì„ í•©ì¹œë‹¤ëŠ” ì˜ë¯¸ì´ë‹¤. 
+ * ë‘ ì›ì†Œê°€ ê°™ì€ ì§‘í•©ì— í¬í•¨ë˜ì–´ ìžˆëŠ”ì§€ë¥¼ í™•ì¸í•˜ëŠ” ì—°ì‚°ì€ 1 a bì˜ í˜•íƒœë¡œ ìž…ë ¥ì´ ì£¼ì–´ì§„ë‹¤. 
+ * ì´ëŠ” aì™€ bê°€ ê°™ì€ ì§‘í•©ì— í¬í•¨ë˜ì–´ ìžˆëŠ”ì§€ë¥¼ í™•ì¸í•˜ëŠ” ì—°ì‚°ì´ë‹¤. 
+ * aì™€ bëŠ” n ì´í•˜ì˜ ìžì—°ìˆ˜ ë˜ëŠ” 0ì´ë©° ê°™ì„ ìˆ˜ë„ ìžˆë‹¤.
  * 
- * Ãâ·Â
- * 1·Î ½ÃÀÛÇÏ´Â ÀÔ·Â¿¡ ´ëÇØ¼­ ÇÑ ÁÙ¿¡ ÇÏ³ª¾¿ YES/NO·Î °á°ú¸¦ Ãâ·ÂÇÑ´Ù. (yes/no ¸¦ Ãâ·ÂÇØµµ µÈ´Ù)
+ * ì¶œë ¥
+ * 1ë¡œ ì‹œìž‘í•˜ëŠ” ìž…ë ¥ì— ëŒ€í•´ì„œ í•œ ì¤„ì— í•˜ë‚˜ì”© YES/NOë¡œ ê²°ê³¼ë¥¼ ì¶œë ¥í•œë‹¤. (yes/no ë¥¼ ì¶œë ¥í•´ë„ ëœë‹¤)
  * 
- * ¿¹Á¦ ÀÔ·Â 1 
+ * ì˜ˆì œ ìž…ë ¥ 1 
  * 7 8
  * 0 1 3
  * 1 1 7
@@ -33,7 +33,7 @@ import java.io.InputStreamReader;
  * 0 1 1
  * 1 1 1
  * 
- * ¿¹Á¦ Ãâ·Â 1 
+ * ì˜ˆì œ ì¶œë ¥ 1 
  * NO
  * NO
  * YES
@@ -75,12 +75,12 @@ public class Q_1717 {
 		parent = new int[nodeCount+1];
 		operArr = new String[operCount];
 		
-		//³ëµå ÃÊ±âÈ­
+		//ë…¸ë“œ ì´ˆê¸°í™”
 		for (int i = 1; i < nodeCount+1; i++) {
 			parent[i] = i;
 		}
 		
-		//¿¬»ê ÀÔ·Â
+		//ì—°ì‚° ìž…ë ¥
 		for (int i = 0; i < operCount; i++) {
 			operArr[i] = br.readLine();
 		}
@@ -88,7 +88,7 @@ public class Q_1717 {
 		for (int i = 0; i < operArr.length; i++) {
 			String[] oper = operArr[i].split(" ");
 
-			//¸í·É¾î ºÐ±â
+			//ëª…ë ¹ì–´ ë¶„ê¸°
 			switch (oper[0]) {
 			case "0":
 				union(parent, Integer.parseInt(oper[1]), Integer.parseInt(oper[2]));
