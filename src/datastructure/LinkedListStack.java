@@ -1,5 +1,11 @@
 package datastructure;
 
+/**
+ * 연결리스트 기반 스택
+ * @author Dev History
+ *
+ * @param <T>
+ */
 public class LinkedListStack<T> {
 
 	//노드를 표현한 클래스

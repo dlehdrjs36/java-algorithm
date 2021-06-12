@@ -2,6 +2,12 @@ package datastructure;
 
 import java.lang.reflect.Array;
 
+/**
+ * 배열 기반 스택
+ * @author Dev History
+ *
+ * @param <T>
+ */
 public class ArrayStack<T> {
 
 	private static final int DEFAULT_ARRAY_SIZE = 8; 

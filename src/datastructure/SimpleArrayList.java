@@ -2,7 +2,12 @@ package datastructure;
 
 import java.lang.reflect.Array;
 
-//순차 리스트
+/**
+ * 배열 기반 리스트
+ * @author Dev History
+ *
+ * @param <T>
+ */
 public class SimpleArrayList<T> {
 
 	private static final int DEFAULT_ARRAY_SIZE = 8; 
