@@ -3,6 +3,7 @@ package backjun;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 /**
  * 백준
@@ -19,13 +20,12 @@ public class Q_9613 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
         int count = Integer.parseInt(br.readLine());
+
         while(count-- > 0) {
             String readLine = br.readLine();
             String[] split = readLine.split(" ");
-            int numCount = Integer.parseInt(split[0]);
-            int sum = 0;
+            long sum = 0;
 
             for (int i = 1; i < split.length; i++) {
                 for (int j = i + 1; j < split.length; j++) {
